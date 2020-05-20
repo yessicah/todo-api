@@ -1,0 +1,21 @@
+version: '2'
+services:
+    api:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: api-todo
+        container_name: TODO-List
+        restart: unless-stopped
+        ports:
+            - '4000:4000'
+        volumes:
+            - .:/home/node/app
+            - node_modules:/home/node/app/node_modules
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge
+volumes:
+    node_modules:
